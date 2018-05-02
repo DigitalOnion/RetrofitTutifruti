@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RetrofitTutifruti</string>
+    <string name="app_label">Retrofit practice app - Luis Viruena</string>
+
+    <string name="check_out">Check out:</string>
+    <string name="url_mvvm_article">https://en.wikipedia.org/wiki/Model-view-viewmodel</string>
+</resources>
