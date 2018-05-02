@@ -1,19 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+<layout
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="mainVM"
+            type="com.outerspace.retrofittutifruti.viewmodel.MainViewModel"/>
+    </data>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.MainActivity">
+
+        <TextView
+            android:id="@+id/intro_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/intro_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingBottom="4dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/open_weather_map_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/open_weather_map_url"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/intro_title"/>
+
+        <TextView
+            android:id="@+id/intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/intro"
+            android:paddingBottom="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/open_weather_map_url"/>
+
+        <Button
+            android:id="@+id/btn_callback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/callback"
+            android:onClick="@{mainVM::onClickBtnCallback}"
+            app:layout_constraintTop_toBottomOf="@+id/intro"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/btn_asynctask"/>
+
+        <Button
+            android:id="@+id/btn_asynctask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/asynctask"
+            android:onClick="@{mainVM::onClickBtnAsyncTask}"
+            app:layout_constraintTop_toTopOf="@+id/btn_callback"
+            app:layout_constraintRight_toLeftOf="@+id/btn_rxjava"
+            app:layout_constraintLeft_toRightOf="@+id/btn_callback"/>
+
+        <Button
+            android:id="@+id/btn_rxjava"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rxjava"
+            android:onClick="@{mainVM::onClickBtnRxJava}"
+            app:layout_constraintTop_toTopOf="@+id/btn_callback"
+            app:layout_constraintLeft_toRightOf="@+id/btn_asynctask"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
