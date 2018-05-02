@@ -4,21 +4,26 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
-import com.outerspace.retrofittutifruti.api.WeatherResponse;
+import com.outerspace.retrofittutifruti.api.Pixabay;
 import com.outerspace.retrofittutifruti.databinding.ActivityMainBinding;
+import com.outerspace.retrofittutifruti.model.CallbackMethod;
 import com.outerspace.retrofittutifruti.model.DataConsumer;
 
 public class MainViewModel implements DataConsumer {
-    private ActivityMainBinding binding;
     private Context context;
+    private ActivityMainBinding binding;
+
+    // model
+    private CallbackMethod callbackMethod;
 
     public MainViewModel(ActivityMainBinding binding) {
         this.binding = binding;
         context = binding.getRoot().getContext();
+        callbackMethod = new CallbackMethod(this);
     }
 
     public void onClickBtnCallback(View view) {
-        Toast.makeText(context, "Hello Callback", Toast.LENGTH_SHORT).show();
+        callbackMethod.requestData("Husky dog");
     }
 
     public void onClickBtnAsyncTask(View view) {
@@ -30,7 +35,13 @@ public class MainViewModel implements DataConsumer {
     }
 
     @Override
-    public void onDataReady(WeatherResponse response) {
-
+    public void onDataReady(Pixabay response) {
+        Toast.makeText(context, "GOOD RESPONSE!", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onDataError(String errorMessage) {
+        Toast.makeText(context, "ERROR:", Toast.LENGTH_SHORT).show();
+    }
+
 }

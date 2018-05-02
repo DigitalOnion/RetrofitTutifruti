@@ -9,7 +9,7 @@
     <string name="asynctask">AsyncTask</string>
     <string name="rxjava">RxJava</string>
 
-    <string name="intro_title">Buttons fire network calls to the Weather API.</string>
-    <string name="open_weather_map_url">https://openweathermap.org/api</string>
+    <string name="intro_title">Buttons fire network calls to Pixabay API.</string>
+    <string name="open_weather_map_url">https://pixabay.com</string>
     <string name="intro">Do you observe any differences?</string>
 </resources>
