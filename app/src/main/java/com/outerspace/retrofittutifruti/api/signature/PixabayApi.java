@@ -2,6 +2,7 @@ package com.outerspace.retrofittutifruti.api.signature;
 
 import com.outerspace.retrofittutifruti.api.Pixabay;
 
+import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -14,6 +15,12 @@ public interface PixabayApi {
 
     @GET(END_POINT)
     Call<Pixabay>  requestPixabay(
+            @Query("q") String query,
+            @Query("key") String api_key
+    );
+
+    @GET(END_POINT)
+    Single<Pixabay> requestRxPixabay (
             @Query("q") String query,
             @Query("key") String api_key
     );

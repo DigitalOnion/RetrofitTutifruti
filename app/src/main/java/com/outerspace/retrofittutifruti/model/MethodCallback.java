@@ -11,31 +11,33 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CallbackMethod implements DataProducer {
+public class MethodCallback implements DataProducer {
 
     private String query;
+    private Gson gson = null;
+    private Retrofit retrofit = null;
+    private PixabayApi api = null;
 
     private DataConsumer consumer;
 
-    public CallbackMethod(DataConsumer consumer) {
+    public MethodCallback(DataConsumer consumer) {
         this.consumer = consumer;
+        gson = new GsonBuilder()
+                .setLenient()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(PixabayApi.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        api = retrofit.create(PixabayApi.class);
     }
 
     @Override
     public void requestData(String query) {
         this.query = query;
-
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .excludeFieldsWithoutExposeAnnotation()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(PixabayApi.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        PixabayApi api = retrofit.create(PixabayApi.class);
 
         Call<Pixabay> requestPixabay = api.requestPixabay(query, PixabayApi.API_KEY);
         requestPixabay.enqueue(new PixabayCallback());

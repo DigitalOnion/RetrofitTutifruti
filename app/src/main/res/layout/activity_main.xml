@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    >
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -9,9 +11,6 @@
     </data>
 
     <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,17 +52,7 @@
             android:onClick="@{mainVM::onClickBtnCallback}"
             app:layout_constraintTop_toBottomOf="@+id/intro"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/btn_asynctask"/>
-
-        <Button
-            android:id="@+id/btn_asynctask"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/asynctask"
-            android:onClick="@{mainVM::onClickBtnAsyncTask}"
-            app:layout_constraintTop_toTopOf="@+id/btn_callback"
-            app:layout_constraintRight_toLeftOf="@+id/btn_rxjava"
-            app:layout_constraintLeft_toRightOf="@+id/btn_callback"/>
+            app:layout_constraintRight_toLeftOf="@+id/btn_rxjava"/>
 
         <Button
             android:id="@+id/btn_rxjava"
@@ -72,8 +61,24 @@
             android:text="@string/rxjava"
             android:onClick="@{mainVM::onClickBtnRxJava}"
             app:layout_constraintTop_toTopOf="@+id/btn_callback"
-            app:layout_constraintLeft_toRightOf="@+id/btn_asynctask"
+            app:layout_constraintLeft_toRightOf="@+id/btn_callback"
             app:layout_constraintRight_toRightOf="parent"/>
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_callback">
+
+            <TextView
+                android:id="@+id/txt_response"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </ScrollView>
 
     </android.support.constraint.ConstraintLayout>
 
